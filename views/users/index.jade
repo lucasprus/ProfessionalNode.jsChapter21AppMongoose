@@ -1,0 +1,25 @@
+h1 Users
+
+p
+  a(href="/users/new") Create new profile
+
+ul
+  - for(var user in users) {
+    li
+      a(href="/users/" + encodeURIComponent(users[user].username))= users[user].name
+  - };
+
+table
+  caption Users
+  thead
+    tr
+      th Name
+      th Bio
+  tbody
+    - for(var user in users) {
+      tr
+        td
+          a(href="/users/" + encodeURIComponent(users[user].username))= users[user].name
+        td
+          a(href="/users/" + encodeURIComponent(users[user].username))= users[user].bio
+    - };
