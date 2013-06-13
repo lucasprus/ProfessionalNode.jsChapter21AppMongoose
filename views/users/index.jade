@@ -4,22 +4,16 @@ p
   a(href="/users/new") Create new profile
 
 ul
-  - for(var user in users) {
+  - users.forEach(function(user) {
     li
-      a(href="/users/" + encodeURIComponent(users[user].username))= users[user].name
-  - };
+      a(href="/users/" + encodeURIComponent(user.username))= user.name
+  - });
 
-table
-  caption Users
-  thead
-    tr
-      th Name
-      th Bio
-  tbody
-    - for(var user in users) {
-      tr
-        td
-          a(href="/users/" + encodeURIComponent(users[user].username))= users[user].name
-        td
-          a(href="/users/" + encodeURIComponent(users[user].username))= users[user].bio
-    - };
+- if (page > 0) {
+  a(href="?page=" + (page - 1)) Previous
+  &nbsp;
+- }
+
+- if (! lastPage) {
+  a(href="?page=" + (page + 1)) Next
+- }
