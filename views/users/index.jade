@@ -6,7 +6,7 @@ p
 ul
   - users.forEach(function(user) {
     li
-      a(href="/users/" + encodeURIComponent(user.username))= user.name
+      a(href="/users/" + encodeURIComponent(user.username))= user.full_name
   - });
 
 - if (page > 0) {
