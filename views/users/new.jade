@@ -1,20 +1,23 @@
 h1 New User
 
 form(method="POST", action="/users")
-  label(class="control-label", for="username") Username: 
-  br 
-  input#username(type="text", name="username")
-  br 
-  label(class="control-label", for="name") Name: 
-  br 
-  input#name(type="text", name="name")
-  br
-  label(class="control-label", for="password") Password: 
-  br 
-  input#password(type="password", name="password")
-  br
-  label(class="control-label", for="bio") Bio: 
-  br 
-  textarea#bio(name="bio")
-  br
-  input(type="submit", value="Create")
+  p
+    label(for="username") Username<br />
+    input#username(name="username")
+  p
+    label(for="name") Name<br />
+    input#name(name="name")
+  p
+    label(for="email") Email<br />
+    input#email(name="email")
+  p
+    label(for="password") Password<br />
+    input#password(type="password", name="password")
+  p
+    label(for="gender") Gender<br />
+    input#gender(name="gender")
+  p
+    label(for="bio") Bio<br />
+    textarea#bio(name="bio")
+  p
+    input(type="submit", value="Create")
