@@ -41,6 +41,7 @@ app.configure('production', function() {
 
 require('./routes/index')(app);
 require('./routes/users')(app);
+require('./routes/articles')(app);
 require('./routes/session')(app);
 
 
