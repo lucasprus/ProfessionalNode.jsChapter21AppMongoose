@@ -48,12 +48,18 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/users/:name', loadUser, function(req, res, next) {
-        res.render('users/profile', {
-            title: 'User profile',
-            user: req.user
-        });
-    });
+	app.get('/users/:name', loadUser, function (req, res, next) {
+		req.user.recentArticles(function (err, articles) {
+			if (err) {
+				return next(err);
+			}
+			res.render('users/profile', {
+				title: 'User profile',
+				user: req.user,
+				recentArticles: articles
+			});
+		});
+	});
 
     app.post('/users', notLoggedIn, function(req, res, next) {
         User.create(req.body, function(err) {

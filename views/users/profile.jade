@@ -22,3 +22,7 @@ p= user.birthday
 form(action="/users/" + encodeURIComponent(user.username), method="POST")
   input(name="_method", type="hidden", value="DELETE")
   input(type="submit", value="Delete")
+
+
+h2 Recent Articles:
+p!= partial('articles/list', {articles: recentArticles })

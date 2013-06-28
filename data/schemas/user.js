@@ -72,6 +72,17 @@ UserSchema.virtual('full_name')
     };
 });
 
+UserSchema.methods.recentArticles = function (callback) {
+    return this.model('Article')
+        .find({
+        author: this._id
+    })
+        .sort('created_at')
+        .limit(5)
+        .exec(callback);
+};
+
+
 module.exports = UserSchema;
 
 var TIMESPAN_YEAR = 31536000000;
