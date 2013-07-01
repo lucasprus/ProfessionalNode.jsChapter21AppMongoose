@@ -5,7 +5,9 @@
 var express = require('express'),
     routes = require('./routes');
 	
-var dbURL = 'mongodb://' + process.env.DATABASE_USER + ':' + process.env.DATABASE_PASSWORD + '@dharma.mongohq.com:10088/users';
+console.log(process.env.DATABASE_USER);
+console.log(process.env.DATABASE_PASSWORD);
+var dbURL = 'mongodb://' + process.env.DATABASE_USER + ':' + process.env.DATABASE_PASSWORD + '@dharma.mongohq.com:10073/lucasprus';
 var db = require('mongoose').connect(dbURL);	
 
 var app = module.exports = express.createServer();

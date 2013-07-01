@@ -6,13 +6,22 @@ var emailRegexp = /.+\@.+\..+/;
 var UserSchema = new mongoose.Schema({
     username: {
         type: String,
-        unique: true
+        unique: true,
+        lowercase: true,
+        required: true
     },
-    name: mongoose.Schema.Types.Mixed,
-    password: String,
+    name: {
+		type: mongoose.Schema.Types.Mixed,
+		required: true
+	},
+    password: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true,
+		unique: true,
         match: emailRegexp
     },
     gender: {
@@ -23,15 +32,16 @@ var UserSchema = new mongoose.Schema({
     },
     birthday: {
         type: Date,
+        required: true,
         validate: [
         validate_18_years_old_or_more,
             'You must be 18 years old or more']
     },
+    bio: {
+        type: String
+    },
     twitter: {
-        type: String,
-        validate: [twitterHandleExists, 'Please provide a valid twitter handle'],
-        set: filterTwitterHandle,
-        get: filterTwitterHandle
+        type: String
     },
 
     meta: {
@@ -89,10 +99,16 @@ var TIMESPAN_YEAR = 31536000000;
 var TIMESPAN_18_YEARS = 18 * TIMESPAN_YEAR;
 
 function validate_18_years_old_or_more(date) {
+    if (!date) {
+        return;
+    }
     return (Date.now() - date.getTime()) > TIMESPAN_18_YEARS;
 }
 
 function twitterHandleExists(handle, done) {
+    if (!handle) {
+        return;
+    }
     request('http://twitter.com/' + encodeURIComponent(handle), function (err, res) {
         if (err) {
             console.error(err);
